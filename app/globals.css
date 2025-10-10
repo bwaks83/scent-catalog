@@ -2,4 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-body { @apply bg-white text-slate-900; }
+/* --- Scent Company — Luxury Clean Look --- */
+:root {
+  /* Soft, warm neutrals with subtle contrast */
+  --bg: #faf9f7;
+  --ink: #2a2a2a;
+  --ink-soft: #6a665f;
+  --line: #e9e6e1;
+  --card: #ffffff;
+  --chip: #f3f1ed;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Headings: elegant + airy */
+h1, h2, h3 {
+  @apply font-light tracking-tight;
+}
+
+/* Reusable card + badge tokens */
+.card {
+  @apply bg-white rounded-2xl border shadow-sm;
+  border-color: var(--line);
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs;
+  background: var(--chip);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+/* Inputs: rounded, airy */
+.input,
+.select {
+  @apply border rounded-full px-4 py-2;
+  border-color: var(--line);
+  background: #fff;
+}
+
+/* Subtle section spacing */
+.section {
+  @apply max-w-6xl mx-auto px-6 md:px-10;
+}
