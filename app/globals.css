@@ -2,50 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- Scent Company — Luxury Clean Look --- */
-:root {
-  /* Soft, warm neutrals with subtle contrast */
-  --bg: #faf9f7;
-  --ink: #2a2a2a;
-  --ink-soft: #6a665f;
-  --line: #e9e6e1;
-  --card: #ffffff;
-  --chip: #f3f1ed;
+/* === Scent Company — Luxury Editorial Edition === */
+@layer base {
+  :root{
+    --bg: #f7f5f2;         /* paper-like off-white */
+    --header: #efece7;    /* slightly darker header */
+    --ink: #2a2a28;        /* body text */
+    --ink-strong:#1a1a18;  /* headings */
+    --ink-soft:#8c857a;    /* captions */
+    --line:#e7e3dd;        /* hairline borders */
+    --gold:#bca87f;        /* soft champagne gold */
+    --card:#ffffff;
+    --chip:#f1eee9;
+  }
+
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: "Source Sans 3", system-ui, sans-serif; }
+
+  .font-serif { font-family: "Cormorant Garamond", Georgia, serif; }
+
+  /* token shortcuts */
+  .bg-bg{ background: var(--bg); }
+  .bg-header{ background: var(--header); }
+  .text-ink{ color: var(--ink); }
+  .text-ink-strong{ color: var(--ink-strong); }
+  .text-ink-soft{ color: var(--ink-soft); }
+  .border-line{ border-color: var(--line); }
+  .text-xxs{ font-size: 0.72rem; }
+
+  h1,h2,h3,h4{ letter-spacing:-0.02em; }
 }
 
-html, body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+/* Components */
+.card{
+  @apply rounded-2xl border border-line bg-[var(--card)] shadow-[0_8px_20px_rgba(0,0,0,0.03)] transition-all duration-300;
+}
+.card:hover{
+  @apply -translate-y-1;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+.badge{
+  display:inline-block; padding:0.3rem 0.75rem; font-size:0.7rem;
+  border-radius:9999px; background:rgba(188,168,127,0.08);
+  border:1px solid rgba(188,168,127,0.25); color:var(--ink-soft);
+  letter-spacing:0.06em; text-transform:uppercase;
+}
+.input,.select{
+  @apply border border-line rounded-full px-4 py-2 text-sm bg-white;
+}
+.input:focus,.select:focus{ outline: none; box-shadow: 0 0 0 2px rgba(188,168,127,0.25); border-color: var(--gold); }
+
+/* Title underline (gold) */
+.title-underline{
+  position:relative; padding-bottom:0.25rem;
+}
+.title-underline::after{
+  content:""; position:absolute; left:0; bottom:-0.1rem; width:2.5rem; height:2px;
+  background:var(--gold); border-radius:9999px;
 }
 
-/* Headings: elegant + airy */
-h1, h2, h3 {
-  @apply font-light tracking-tight;
-}
+/* Optional golden bar reveal (kept, but cleaner) */
+@keyframes gold-reveal{ from{transform:scaleX(0);opacity:0;} to{transform:scaleX(1);opacity:1;} }
+.gold-bar{ height:2px; width:40px; background:var(--gold); transform-origin:left; border-radius:9999px; animation:gold-reveal 600ms ease-out 120ms both; opacity:0; }
+.card:hover .gold-bar{ transform:scaleX(1.08); transition:transform 300ms ease; }
 
-/* Reusable card + badge tokens */
-.card {
-  @apply bg-white rounded-2xl border shadow-sm;
-  border-color: var(--line);
-}
 
-.badge {
-  @apply inline-flex items-center rounded-full px-3 py-1 text-xs;
-  background: var(--chip);
-  color: var(--ink-soft);
-  border: 1px solid var(--line);
-}
-
-/* Inputs: rounded, airy */
-.input,
-.select {
-  @apply border rounded-full px-4 py-2;
-  border-color: var(--line);
-  background: #fff;
-}
-
-/* Subtle section spacing */
-.section {
-  @apply max-w-6xl mx-auto px-6 md:px-10;
-}
