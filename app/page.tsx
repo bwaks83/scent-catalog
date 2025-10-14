@@ -22,6 +22,14 @@ function normalize(t: string) {
   return t.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
 
+function familyToken(f: string) {
+  return (f || "")
+    .toUpperCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, ""); // removes accents (e.g., “CIPRÉE” → “CIPREE”)
+}
+
+
 export default function Home() {
   const [rows, setRows] = useState<ScentRow[]>([]);
   const [q, setQ] = useState("");
@@ -80,14 +88,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen py-10">
-      <section className="max-w-6xl mx-auto px-6 md:px-10">
-        <h1 className="text-3xl md:text-4xl mb-2">Fragrance Catalog</h1>
-        <p className="text-sm text-[var(--ink-soft)] mb-6">
-          Explore the Scent Company collection. Search by notes, family or status.
-        </p>
+<section className="rounded-2xl bg-[#f9f6f1] border border-line p-6 mb-12">
+  <h1 className="text-3xl md:text-4xl mb-2 text-ink-strong">Fragrance Catalog</h1>
+  <p className="text-sm text-ink-soft mb-6">
+    Explore the Scent Company collection. Search by notes, family or status.
+  </p>
 
         {/* Controls */}
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div className="flex flex-wrap gap-3">
           <input
             className="input min-w-[280px] w-full sm:w-96"
             placeholder={
@@ -140,15 +148,17 @@ export default function Home() {
         </div>
 
         {/* Results */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
   {result.map((r) => (
     <div key={r.ID} className="card px-8 pt-8 pb-6">
       {/* opcional: barra dourada sutil no topo */}
       {/* <div className="gold-bar mb-4"></div> */}
 
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-2xl font-serif title-underline">{r.Name}</h3>
-        <span className="badge">{r.Family}</span>
+        <h3 className="text-2xl font-serif title-underline text-[var(--gold)]">{r.Name}</h3>
+        <span className="badge" data-family={familyToken(r.Family)}>
+  {r.Family}
+</span>
       </div>
 
       {r["Short Description"] && (

@@ -16,7 +16,13 @@
     --chip:#f1eee9;
   }
 
-  html, body { background: var(--bg); color: var(--ink); }
+  html, body {
+    background-color: var(--bg);
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-repeat: repeat;
+    background-size: 600px; /* larger = more subtle texture */
+    color: var(--ink);
+  }
   body { font-family: "Source Sans 3", system-ui, sans-serif; }
 
   .font-serif { font-family: "Cormorant Garamond", Georgia, serif; }
@@ -65,5 +71,34 @@
 @keyframes gold-reveal{ from{transform:scaleX(0);opacity:0;} to{transform:scaleX(1);opacity:1;} }
 .gold-bar{ height:2px; width:40px; background:var(--gold); transform-origin:left; border-radius:9999px; animation:gold-reveal 600ms ease-out 120ms both; opacity:0; }
 .card:hover .gold-bar{ transform:scaleX(1.08); transition:transform 300ms ease; }
+
+/* === Scent families — muted luxury accents === */
+/* Citrus, Floral, Woody, Oriental, Aquatic, Aromatic, Spicy, Gourmand,
+   Musky, Green, Sweet, Fruity, Powdery, Rustic, Ciprée, Fresh, Vanilla, Amber */
+
+   .badge[data-family="CITRUS"]   { background:#FFF7E8; color:#A97A14; border-color:#F1E0A8; }
+   .badge[data-family="FLORAL"]   { background:#FDF0F3; color:#A44D66; border-color:#F8D4DC; }
+   .badge[data-family="WOODY"]    { background:#F5F0EB; color:#5D4633; border-color:#E0D2C1; }
+   .badge[data-family="ORIENTAL"] { background:#FBF1EA; color:#8E5B3E; border-color:#EED3BF; }
+   .badge[data-family="AQUATIC"]  { background:#EDF6FA; color:#3F6B82; border-color:#CFE5F1; }
+   .badge[data-family="AROMATIC"] { background:#EEF7F4; color:#346A57; border-color:#CFE5DC; }
+   .badge[data-family="SPICY"]    { background:#FCEEE5; color:#9B4F1C; border-color:#F2CBB0; }
+   .badge[data-family="GOURMAND"] { background:#FBF2E9; color:#7A4F2A; border-color:#E8D3B7; }
+   .badge[data-family="MUSKY"]    { background:#F5F2F0; color:#6C5E55; border-color:#E3D9CF; }
+   .badge[data-family="GREEN"]    { background:#EEF7EE; color:#2F6A3A; border-color:#CFE6D0; }
+   .badge[data-family="SWEET"]    { background:#FEF1F6; color:#9A5A86; border-color:#F6D3E4; }
+   .badge[data-family="FRUITY"]   { background:#FFF3EC; color:#B3663A; border-color:#F7D7C6; }
+   .badge[data-family="POWDERY"]  { background:#F7F3F7; color:#6E6273; border-color:#E5DDE7; }
+   .badge[data-family="RUSTIC"]   { background:#F4EFE9; color:#6B513D; border-color:#E2D3C2; }
+   .badge[data-family="CIPREE"]   { background:#F2F6EC; color:#577140; border-color:#D8E6C5; } /* Ciprée → CIPREE */
+   .badge[data-family="FRESH"]    { background:#F1F7F5; color:#2F6F66; border-color:#D6E8E3; }
+   .badge[data-family="VANILLA"]  { background:#FBF5EB; color:#8B6A2C; border-color:#EAD9B7; }
+   .badge[data-family="AMBER"]    { background:#FBF2EC; color:#A55A28; border-color:#F3CFB5; }
+
+   .badge[data-family]:hover {
+    filter: saturate(1.15);
+    transition: filter 180ms ease;
+  }
+  
 
 

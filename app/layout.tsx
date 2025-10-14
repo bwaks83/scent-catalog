@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p className="mt-1 text-xxs md:text-xs tracking-[0.25em] uppercase text-ink-soft">
               The Essence of Identity
             </p>
+    <div className="h-[1px] w-20 bg-[var(--gold)] mx-auto mt-4"></div>
           </div>
         </header>
 
