@@ -142,7 +142,7 @@ export default function Home() {
         {/* Results */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
   {result.map((r) => (
-    <div key={r.ID} className="card p-8">
+    <div key={r.ID} className="card px-8 pt-8 pb-6">
       {/* opcional: barra dourada sutil no topo */}
       {/* <div className="gold-bar mb-4"></div> */}
 
@@ -159,11 +159,6 @@ export default function Home() {
         <p><span className="font-semibold text-ink-strong">Top notes:</span> {splitNotes(r["Top Notes"]).join(", ")}</p>
         <p><span className="font-semibold text-ink-strong">Heart notes:</span> {splitNotes(r["Heart Notes"]).join(", ")}</p>
         <p><span className="font-semibold text-ink-strong">Base notes:</span> {splitNotes(r["Base Notes"]).join(", ")}</p>
-      </div>
-
-      <div className="flex justify-between items-center mt-6 text-xs text-ink-soft">
-        <span>{r.Status || "Unknown"}</span>
-        <span>{r["Origin Country"] || ""}</span>
       </div>
     </div>
   ))}
