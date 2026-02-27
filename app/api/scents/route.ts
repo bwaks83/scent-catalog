@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const HEADERS = [
   "ID","Name","Family","Short Description","Top Notes","Heart Notes",
-  "Base Notes","Key Ingredients","Origin Country","Status","Notes"
+  "Base Notes","Key Ingredients","Origin Country","Status","Notes", "Price 500ml", "Price 150ml", "Price 60ml"
 ] as const;
 
 type ScentRow = Record<(typeof HEADERS)[number], string>;
