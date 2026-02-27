@@ -13,6 +13,9 @@ type ScentRow = {
   "Origin Country": string;
   Status: string;
   Notes: string;
+  "Price 500ml": string;
+  "Price 150ml": string;
+  "Price 60ml": string;
 };
 
 function splitNotes(s: string) {
@@ -27,6 +30,17 @@ function familyToken(f: string) {
     .toUpperCase()
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, ""); // removes accents (e.g., “CIPRÉE” → “CIPREE”)
+}
+
+function formatUSD(value: string) {
+  if (!value) return "—";
+  const number = Number(value);
+  if (isNaN(number)) return value;
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(number);
 }
 
 
@@ -170,6 +184,16 @@ export default function Home() {
         <p><span className="font-semibold text-ink-strong">Heart notes:</span> {splitNotes(r["Heart Notes"]).join(", ")}</p>
         <p><span className="font-semibold text-ink-strong">Base notes:</span> {splitNotes(r["Base Notes"]).join(", ")}</p>
       </div>
+
+      <div className="mt-5 text-sm text-ink-soft">
+  <span className="font-semibold text-ink-strong">Pricing:</span>{" "}
+  500ml: {formatUSD(r["Price 500ml"])} ·{" "}
+  150ml: {formatUSD(r["Price 150ml"])} ·{" "}
+  60ml: {formatUSD(r["Price 60ml"])}
+</div>
+
+
+
     </div>
   ))}
 </div>
