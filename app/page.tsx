@@ -50,7 +50,7 @@ export default function Home() {
   const [q, setQ] = useState("");
   const [family, setFamily] = useState("All");
   const [status, setStatus] = useState("Any");
-  const [searchIn, setSearchIn] = useState<"Any" | "Top" | "Heart" | "Base">("Any");
+  const [searchIn, setSearchIn] = useState<"Any" | "Main Ingredient" | "Top" | "Heart" | "Base">("Any");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
@@ -79,12 +79,14 @@ export default function Home() {
     const nq = normalize(q.trim());
 
     function fieldsForSearch(r: ScentRow): string[] {
+      if (searchIn === "Main Ingredient") return [r["Main Ingredient"]];
       if (searchIn === "Top") return [r["Top Notes"]];
       if (searchIn === "Heart") return [r["Heart Notes"]];
       if (searchIn === "Base") return [r["Base Notes"]];
       return [
         r.Name,
         r.Family,
+        r["Main Ingredient"],
         r["Top Notes"],
         r["Heart Notes"],
         r["Base Notes"],
@@ -114,13 +116,15 @@ export default function Home() {
           <input
             className="input min-w-[280px] w-full sm:w-96"
             placeholder={
-              searchIn === "Top"
+              searchIn === "Main Ingredient"
+                ? "Search in Main Ingredient (e.g., bergamot)"
+                : searchIn === "Top"
                 ? "Search in Top notes (e.g., bergamot)"
                 : searchIn === "Heart"
                 ? "Search in Heart notes (e.g., rose)"
                 : searchIn === "Base"
                 ? "Search in Base notes (e.g., musk)"
-                : "Search any (name, family, notes, key ingredients)"
+                : "Search any (name, family, main ingredient, notes, key ingredients)"
             }
             value={q}
             onChange={e => setQ(e.target.value)}
@@ -156,6 +160,7 @@ export default function Home() {
             onChange={e => setSearchIn(e.target.value as any)}
           >
             <option value="Any">Search in: Any</option>
+            <option value="Main Ingredient">Search in: Main Ingredient</option>
             <option value="Top">Search in: Top notes</option>
             <option value="Heart">Search in: Heart notes</option>
             <option value="Base">Search in: Base notes</option>
