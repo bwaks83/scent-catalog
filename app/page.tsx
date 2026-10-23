@@ -6,6 +6,7 @@ type ScentRow = {
   Name: string;
   Family: string;
   "Short Description": string;
+  "Main Ingredient": string;
   "Top Notes": string;
   "Heart Notes": string;
   "Base Notes": string;
@@ -180,6 +181,7 @@ export default function Home() {
       )}
 
       <div className="space-y-3 text-sm leading-relaxed">
+        <p><span className="font-semibold text-ink-strong">Main Ingredient:</span> {r["Main Ingredient"]}</p>
         <p><span className="font-semibold text-ink-strong">Top notes:</span> {splitNotes(r["Top Notes"]).join(", ")}</p>
         <p><span className="font-semibold text-ink-strong">Heart notes:</span> {splitNotes(r["Heart Notes"]).join(", ")}</p>
         <p><span className="font-semibold text-ink-strong">Base notes:</span> {splitNotes(r["Base Notes"]).join(", ")}</p>
